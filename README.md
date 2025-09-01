@@ -28,15 +28,15 @@ Other parameters are the first timecode, and output filename
 
 Inputs You Control
 
-start_time: where captions begin (in seconds)
+<code>start_time</code>: where captions begin (in seconds)
 
-duration: duration of each caption (in seconds)
+<code>duration</code>: duration of each caption (in seconds)
 
-format_type: "sbv" or "srt"
+<code>format_type</code>: "sbv" or "srt"
 
-caption_file: path to your plain text file (one caption per line)
+<code>caption_file</code>: path to your plain text file (one caption per line)
 
-output_file: optional name for the output subtitle file
+<code>output_file</code>: optional name for the output subtitle file
 
 You can override constant sequential timecoding. Just put time value (in seconds) in the 
 beginning of any line, in parenthesis. Example:
