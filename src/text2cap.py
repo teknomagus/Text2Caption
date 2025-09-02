@@ -52,11 +52,13 @@ def generate_subtitles(caption_file: str, caption_length: float, format_type: st
     if format_type not in ("sbv", "srt"):
         raise ValueError("format_type must be 'sbv' or 'srt'")
     entries = read_captions_with_overrides(caption_file)
+    output_file_2 = output_file + ".speech"
     if output_file is None:
         output_file = f"captions.{format_type}"
+        output_file_2 = "captions.speech"
 
     current = start_time
-    print(current)
+    
     with open(output_file, "w", encoding="utf-8") as out:
         for idx, (override, text) in enumerate(entries, start=1):
             if override is not None:
@@ -73,8 +75,24 @@ def generate_subtitles(caption_file: str, caption_length: float, format_type: st
                 out.write(f"{text}\n\n")
 
             current = end
-
     print(f"{format_type.upper()} file created: {output_file}")
+    current = start_time
+    
+    with open(output_file_2, "w", encoding="utf-8") as out:
+        for idx, (override, text) in enumerate(entries, start=1):
+            if override is not None:
+                current = override
+            end = current + caption_length
+            
+
+            out.write(f"{format_sbv_time(current)}")
+            out.write(" ")
+            out.write(f"{text}\n")
+            
+
+            current = end
+
+    print(f"{format_type.upper()} file created: {output_file_2}")
 
 # Example usage
 if __name__ == "__main__":

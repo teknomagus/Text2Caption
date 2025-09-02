@@ -1,3 +1,8 @@
+# Requisites
+You need Python 3.
+
+<code>pip install pyttsx3</code>
+
 # Text2Caption
  Creates caption files from plain text
 
@@ -44,3 +49,23 @@ beginning of any line, in parenthesis. Example:
 
 Process will automatically continue with overridden time value, and in the example above 
 next caption will automatically start at 70 sec etc. If you wish, you can override each line.
+
+This program will generate special subtitle text file for text2wav.py that generates audio 
+track with narration for the video (see below).
+
+# Create narration track for video
+Using the special subtitle file this program <code>text2wav.py</code> generates narration as audio (wav) track, 
+which you can use as audio track in video editor. For really long narration it may be necessary 
+to generate audio in segments, and then append them together in video editor. Unlike previous programs, 
+this program works only in Windows, currently
+
+<code>text2wav.py captionfile audiofilename</code>
+
+<code>captionfile</code> name of the text file with timecoded captions
+<code>audiofilename</code> output filename
+
+Input file should follow this format. Text2cap.py program will generate this subtitle file 
+automatically. Each line should contain timecode (00:00:00) or plain seconds, blank space, 
+and caption text.
+
+<code>timecode caption</code>
