@@ -15,6 +15,15 @@ where each caption is spoken at the same time as caption is shown.
 Since these are for personal use, they are command line tools, and they are as simple 
 as possible.
 
+# Basic usage
+
+You have plain text file <code>testfile.txt</code>
+<code>python split_and_wrap.py testfile.txt linetext.txt --max-length 100 --min-length 5</code>
+<code>python text2cap.py linetext.txt 5.0 sbv 0.0 subtitle</code>
+<code>python text2wav.py subtitle.sbv.speech subtitle.wav</code>
+After this you have 2 files - subtitle.sbv with timecoded captions, and subtitle.wav audio file 
+where each caption is spoken using chosen voice
+
 # Split plain text to lines
 Assuming you have a text file with plain text description that you want to use
 as captions in the video. You can transform that plain text to separate lines with
@@ -63,7 +72,7 @@ which you can use as audio track in video editor. For really long narration it m
 to generate audio in segments, and then append them together in video editor. Unlike previous programs, 
 this program works only in Windows, currently.
 
-<code>text2wav.py captionfile audiofilename</code>
+<code>python text2wav.py captionfile audiofilename</code>
 
 <code>captionfile</code> name of the text file with timecoded captions
 <code>audiofilename</code> output filename
@@ -78,7 +87,9 @@ and caption text.
 I may add new features occasionally. Currently I have no intention to add any kind of GUI.
 Following features are planned:
 
-- different voices
+- different voices for whole file
+- tag any line to use certain voice
+- different speech rates
 - fades and mixings
 - (chapter) tag creates separate file for video chapters
 - split and wrap could create automatically (chapter) tags when it encounters numbered section headlines
