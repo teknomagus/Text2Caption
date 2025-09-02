@@ -4,7 +4,7 @@ You need Python 3.
 <code>pip install pyttsx3</code>
 
 # Text2Caption
- Creates caption files from plain text
+ Creates subtitle caption files and audio narrative from plain text
 
 I made this collection of command line Python tools for myself, but others may 
 find them useful too. It became too tedious to use YouTube subtitle editor. I usually wrote 
