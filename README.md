@@ -4,7 +4,7 @@ You need Python 3.
 <code>pip install pyttsx3</code>
 
 # Text2Caption
- Creates subtitle caption files and audio narrative from plain text
+ Creates subtitle caption files and audio narration from plain text
 
 I made this collection of command line Python tools for myself, but others may 
 find them useful too. It became too tedious to use YouTube subtitle editor. I usually wrote 
@@ -18,7 +18,10 @@ as possible.
 # Split plain text to lines
 Assuming you have a text file with plain text description that you want to use
 as captions in the video. You can transform that plain text to separate lines with
-split_and_wrap.py
+split_and_wrap.py which recognizes sentences. In optimal case, one sentence will be 
+one caption line. If sentence is too long (longer than max-length), then it is split 
+to several caption lines. Min-length parameter is used to avoid misinterpreting certain
+expression as sentences, but it does not work perfectly yet.
 
 <code>python split_and_wrap.py input.txt output.txt --max-length 70 --min-length 5</code>
 
