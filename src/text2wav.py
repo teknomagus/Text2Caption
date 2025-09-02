@@ -1,4 +1,7 @@
 import os
+import sys
+import re
+from datetime import timedelta
 import wave
 import tempfile
 import comtypes.client
@@ -8,6 +11,28 @@ sapi_path = os.path.join(
 )
 comtypes.client.GetModule(sapi_path)
 from comtypes.gen import SpeechLib
+
+def read_captions_with_timecodes(path: str):
+    """
+    Returns a list of tuples: (override_time | None, caption_text).
+    Lines starting with '(number)' define override_time.
+    """
+    pattern = re.compile(r"^\(\s*(\d+(?:\.\d+)?)\s*\)\s*(.*)$")
+    entries = []
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            line = line.rstrip()
+            if not line:
+                continue
+            m = pattern.match(line)
+            if m:
+                override = float(m.group(1))
+                text = m.group(2).strip()
+            else:
+                override = None
+                text = line
+            entries.append((override, text))
+    return entries
 
 def tts_to_wav(text, filename, voice_id=None, rate=0):
     """
@@ -39,10 +64,10 @@ def merge_wavs(segments, out_filename):
     wav_paths = []
     
     # 1) Generate individual WAVs
-    for i, seg in enumerate(segments):
+    for i, (tcode, captext) in enumerate(segments, start=1):
         path = os.path.join(tmpdir, f"seg_{i}.wav")
-        tts_to_wav(seg['text'], path, voice_id=None, rate=0)
-        wav_paths.append((path, seg['start']))
+        tts_to_wav(captext, path, voice_id=None, rate=0)
+        wav_paths.append((path, tcode))
     
     # 2) Read parameters from first WAV
     params = None
@@ -92,9 +117,8 @@ def merge_wavs(segments, out_filename):
 
 # Example usage
 if __name__ == "__main__":
-    segments = [
-        {"text": "Good morning, Mika.",            "start": 0.0},
-        {"text": "Here is your first reminder.", "start": 5.2},
-        {"text": "And this is your second note.", "start": 12.7},
-    ]
-    merge_wavs(segments, "combined_output.wav")
+    caption_file = sys.argv[1]
+    output_file = sys.argv[2]
+    entries = read_captions_with_timecodes(caption_file)
+    
+    merge_wavs(entries, output_file)

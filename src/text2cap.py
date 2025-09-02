@@ -85,7 +85,7 @@ def generate_subtitles(caption_file: str, caption_length: float, format_type: st
             end = current + caption_length
             
 
-            out.write(f"{format_sbv_time(current)}")
+            out.write(f"({current})")
             out.write(" ")
             out.write(f"{text}\n")
             

@@ -77,3 +77,5 @@ Following features are planned:
 
 - different voices
 - fades and mixings
+- (chapter) tag creates separate file for video chapters
+- split and wrap could create automatically (chapter) tags when it encounters numbered section headlines
