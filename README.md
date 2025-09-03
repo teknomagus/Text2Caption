@@ -102,3 +102,4 @@ Following features are planned:
 - fades and mixings
 - (chapter) tag creates separate file for video chapters
 - split and wrap could create automatically (chapter) tags when it encounters numbered section headlines
+- detect lists, ordered and unordered
