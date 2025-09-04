@@ -33,7 +33,7 @@ uses linetext.txt file (from previous step) as input, and generates subtitle fil
 separate subtitle.sbv.speech file (for speech generation), and chapter file for YouTube. If you 
 select srt, then this will generate files subtitle.srt and subtitle.srt.speech.
 
-<code>python text2wav.py subtitle.sbv.speech subtitle.wav</code>
+<code>python text2wav.py subtitle.sbv.speech subtitle.wav 1 1</code>
 
 After this you have 2 files - subtitle.sbv with timecoded captions, and subtitle.wav audio file 
 where each caption is spoken using chosen voice. Additionally you have subtitle.chapter file 
@@ -99,11 +99,15 @@ which you can use as audio track in video editor. For really long narration it m
 to generate audio in segments, and then append them together in video editor. Unlike previous programs, 
 this program works only in Windows, currently.
 
-<code>python text2wav.py captionfile audiofilename</code>
+<code>python text2wav.py captionfile audiofilename voice speechrate</code>
 
 <code>captionfile</code> name of the text file with timecoded captions
 
 <code>audiofilename</code> output filename
+
+<code>voice</code> voice ID (1,2, or 3)
+
+<code>speechrate</code> rate of speech (integer) (0 = normal, negative = slower, positive = faster)
 
 Input file should follow this format. Text2cap.py program will generate this subtitle file 
 automatically. Each line should contain timecode (00:00:00) or plain seconds, blank space, 

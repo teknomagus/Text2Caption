@@ -10,6 +10,7 @@ sapi_path = os.path.join(
     'System32', 'Speech', 'Common', 'sapi.dll'
 )
 comtypes.client.GetModule(sapi_path)
+
 from comtypes.gen import SpeechLib
 
 def read_captions_with_timecodes(path: str):
@@ -52,7 +53,7 @@ def tts_to_wav(text, filename, voice_id=None, rate=0):
     speaker.Speak(text)
     stream.Close()
 
-def merge_wavs(segments, out_filename):
+def merge_wavs(segments, out_filename,voice_no,speechrate):
     """
     `segments`: list of dicts with keys:
        - 'text': string to speak
@@ -66,7 +67,7 @@ def merge_wavs(segments, out_filename):
     # 1) Generate individual WAVs
     for i, (tcode, captext) in enumerate(segments, start=1):
         path = os.path.join(tmpdir, f"seg_{i}.wav")
-        tts_to_wav(captext, path, voice_id=None, rate=0)
+        tts_to_wav(captext, path, voice_id=voice_no, rate=speechrate)
         wav_paths.append((path, tcode))
     
     # 2) Read parameters from first WAV
@@ -119,6 +120,8 @@ def merge_wavs(segments, out_filename):
 if __name__ == "__main__":
     caption_file = sys.argv[1]
     output_file = sys.argv[2]
+    voice_no = sys.argv[3]
+    speechrate = sys.argv[4]
     entries = read_captions_with_timecodes(caption_file)
     
-    merge_wavs(entries, output_file)
+    merge_wavs(entries, output_file, int(voice_no), int(speechrate))

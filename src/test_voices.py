@@ -36,7 +36,8 @@ if __name__ == "__main__":
     voices = engine.getProperty('voices')
     for voice in voices:
         print(voice.id)
-    engine.setProperty('voice', voices[2].id) 
-    engine.say("Hello Mike, this is your Windows Narrator speaking.")
+    engine.setProperty('voice', voices[1].id)
+    engine.setProperty('rate', 125)
+    engine.say("I hear your favorite gum is coming back in style.")
     engine.runAndWait()
     
