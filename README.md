@@ -119,10 +119,6 @@ and caption text.
 I may add new features occasionally. Currently I have no intention to add any kind of GUI.
 Following features are planned:
 
-- different voices for whole file
 - tag any line to use certain voice
-- different speech rates
 - fades and mixings
-- (chapter) tag creates separate file for video chapters
-- split and wrap could create automatically (chapter) tags when it encounters numbered section headlines
 - detect lists, ordered and unordered
