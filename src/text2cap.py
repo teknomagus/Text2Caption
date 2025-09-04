@@ -69,7 +69,7 @@ def generate_subtitles(caption_file: str, caption_length: float, format_type: st
             if text[:9] == "(chapter)":
                 text = text[9:]
                 out.write(f"{format_srt_time(current)} ")
-                out.write(f"{text}\n")
+                out.write(f"CHAPTER {text}\n")
 
             current = end
     print(f"{format_type.upper()} file created: {output_file_3}")
@@ -81,7 +81,7 @@ def generate_subtitles(caption_file: str, caption_length: float, format_type: st
                 current = override
             end = current + caption_length
             if text[:9] == "(chapter)":
-                text = text[9:]
+                text = "CHAPTER " + text[9:]
 
             if format_type == "sbv":
                 out.write(f"{format_sbv_time(current)},{format_sbv_time(end)}\n")
@@ -101,7 +101,7 @@ def generate_subtitles(caption_file: str, caption_length: float, format_type: st
                 current = override
             end = current + caption_length
             if text[:9] == "(chapter)":
-                text = text[9:]
+                text = "CHAPTER " + text[9:]
 
             out.write(f"({current})")
             out.write(" ")
