@@ -8,7 +8,7 @@ def mark_chapters_with_id(text):
     
     def repl(m):
         # strip trailing dot from the numeric ID
-        chap_id = m.group(1).rstrip('.')
+        chap_id = m.group(1).replace('.'," ")
         title  = m.group(2)
         return f'(chapter) {chap_id} {title}'
     return CHAPTER_RE.sub(repl, text)
