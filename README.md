@@ -52,7 +52,7 @@ and chapter list.
 Below is more details of each phase.
 
 # Split plain text to lines
-Assuming you have a text file with plain text description that you want to use
+You start with a plain text file. It can be documentation, description or script that you want to use
 as captions in the video. You can transform that plain text to separate lines with
 split_and_wrap.py which recognizes sentences. In optimal case, one sentence will be 
 one caption line. If sentence is too long (longer than max-length), then it is split 
@@ -73,7 +73,7 @@ Other parameters are the first timecode, and output filename
 
 Inputs You Control
 
-<code>start_time</code>: where captions begin (in seconds)
+<code>start_time</code>: the time captions begin (in seconds)
 
 <code>duration</code>: duration of each caption (in seconds)
 
@@ -90,8 +90,7 @@ beginning of any line, in parenthesis. Example:
 Process will automatically continue with overridden time value, and in the example above 
 next caption will automatically start at 70 sec etc. If you wish, you can override each line.
 
-This program will generate special subtitle text file (output_file.speech) for text2wav.py that generates audio 
-track with narration for the video (see below).
+This program will generate special subtitle text file (output_file.speech) to be processed with text2wav.py that generates audio track with narration for the video (see below).
 
 # Create narration track for video
 Using the special subtitle file this program <code>text2wav.py</code> generates narration as audio (wav) track, 
