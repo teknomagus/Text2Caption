@@ -21,14 +21,20 @@ as possible.
 # Basic usage
 
 You have plain text file <code>testfile.txt</code>
+
 <code>python split_and_wrap.py testfile.txt linetext.txt --max-length 100 --min-length 5</code>
+
 generates a file (linetext.txt) where each sentence and headline is on its own line, or several separate lines. 
 You can edit this file, and add specific timecode or chapter tag on any lines.
+
 <code>python text2cap.py linetext.txt 5.0 sbv 0.0 subtitle</code>
+
 uses linetext.txt file (from previous step) as input, and generates subtitle file subtitle.sbv with timecodes, 
 separate subtitle.sbv.speech file (for speech generation), and chapter file for YouTube. If you 
 select srt, then this will generate files subtitle.srt and subtitle.srt.speech.
+
 <code>python text2wav.py subtitle.sbv.speech subtitle.wav</code>
+
 After this you have 2 files - subtitle.sbv with timecoded captions, and subtitle.wav audio file 
 where each caption is spoken using chosen voice. Additionally you have subtitle.chapter file 
 which contains list of timecodes and chapter names. If you copy and paste this text to YouTube 
@@ -96,6 +102,7 @@ this program works only in Windows, currently.
 <code>python text2wav.py captionfile audiofilename</code>
 
 <code>captionfile</code> name of the text file with timecoded captions
+
 <code>audiofilename</code> output filename
 
 Input file should follow this format. Text2cap.py program will generate this subtitle file 
