@@ -1,5 +1,17 @@
 import argparse
 import textwrap
+import re
+
+CHAPTER_RE = re.compile(r'^(\d+(?:\.\d+)*\.)\s+(.*)$')
+
+def mark_chapters_with_id(text):
+    
+    def repl(m):
+        # strip trailing dot from the numeric ID
+        chap_id = m.group(1).rstrip('.')
+        title  = m.group(2)
+        return f'(chapter) {chap_id} {title}'
+    return CHAPTER_RE.sub(repl, text)
 
 def split_sentences(text):
     """
@@ -32,8 +44,9 @@ def merge_short_sentences(sentences, min_words):
     merged = []
     i = 0
     while i < len(sentences):
+        #
         tokens = sentences[i].split()
-        if len(tokens) < min_words:
+        if len(tokens) < min_words and sentences[i][:9] != "(chapter)":
             # Merge into next if possible
             if i + 1 < len(sentences):
                 sentences[i + 1] = sentences[i] + " " + sentences[i + 1]
@@ -64,6 +77,7 @@ def wrap_sentences(sentences, max_length):
     return wrapped
 
 def main():
+    
     parser = argparse.ArgumentParser(
         description="Split text into sentences and wrap each line."
     )
@@ -85,7 +99,13 @@ def main():
 
     # Read full text
     with open(args.input_file, "r", encoding="utf-8") as f:
-        text = f.read()
+        text_orig = f.read()
+    text = ""
+    lines = text_orig.splitlines()
+    for line in lines:
+        #print(mark_chapters_with_id(line))
+        text = text + mark_chapters_with_id(line) + "\n"
+    #print(text)     
 
     # Split, merge short fragments, then wrap
     raw_sentences = split_sentences(text)
