@@ -12,6 +12,9 @@ long description about video, so I thought that I could transform them to subtit
 These programs automate that 3-step process and produce timecoded sbv/srt files and wav audio 
 where each caption is spoken at the same time as caption is shown.
 
+
+
+
 Since these are for personal use, they are command line tools, and they are as simple 
 as possible.
 
@@ -30,6 +33,15 @@ After this you have 2 files - subtitle.sbv with timecoded captions, and subtitle
 where each caption is spoken using chosen voice. Additionally you have subtitle.chapter file 
 which contains list of timecodes and chapter names. If you copy and paste this text to YouTube 
 video description, then video automatically shows chapters.
+
+Program detects chapter headlines from raw text if they are on their own line and format:
+
+<code>1. Headline
+2.3.6. Subchapter
+etc...
+</code>
+Notice that headline must start with number and there must be "." after last number. Otherwise detection fails. When detected, these headlines are tagged for subsequent processing to subtitles 
+and chapter list.
 
 Below is more details of each phase.
 
