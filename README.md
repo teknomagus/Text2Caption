@@ -12,7 +12,7 @@ long description about video, so I thought that I could transform them to subtit
 These programs automate that 3-step process and produce timecoded sbv/srt files and wav audio 
 where each caption is spoken at the same time as caption is shown.
 
-
+Notice: subtitle generation should work on every platform, but speech generation works only on Windows. It has been tested on Windows 11.
 
 
 Since these are for personal use, they are command line tools, and they are as simple 
